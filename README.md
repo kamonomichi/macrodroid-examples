@@ -20,4 +20,5 @@ All examples are designed for clarity, reproducibility, and hands-on learning.
 
 ## 📸 Screenshot
 
-![MacroDroid Example Screenshot](https://raw.githubusercontent.com/kamonomichi/macrodroid-examples/main/screenshot.png)
+![MacroDroid Example Screenshot]([https://raw.githubusercontent.com/kamonomichi/macrodroid-examples/main/screenshot.png](https://raw.githubusercontent.com/kamonomichi/macrodroid-examples/main/share_842429301686638893.jpg
+))
