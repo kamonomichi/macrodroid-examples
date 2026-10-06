@@ -81,8 +81,8 @@ All examples follow a consistent structure:
 
 ---
 
-## 3. 連続した電源番号拒否（2026-5-15）  
-**File:** `連続した電源番号拒否（2026-5-15）.macro`  
+## 3. 連続した電話番号拒否（2026-5-15）  
+**File:** `連続した電話番号拒否（2026-5-15）.macro`  
 **Article:** https://kamonomichi.com/macrodroid-call-restrictions/
 
 ### **Purpose**
@@ -110,8 +110,8 @@ All examples follow a consistent structure:
 
 ---
 
-## 4. 特定電源番号の着信無音（2026-5-15）  
-**File:** `特定電源番号の着信無音（2026-5-15）.macro`  
+## 4. 特定電話番号の着信無音（2026-5-15）  
+**File:** `特定電話番号の着信無音（2026-5-15）.macro`  
 **Article:** https://kamonomichi.com/macrodroid-call-restrictions/
 
 ### **Purpose**
@@ -142,8 +142,8 @@ All examples follow a consistent structure:
 
 ---
 
-## 5. 特定の電源番号拒否（2026-5-15）  
-**File:** `特定の電源番号拒否（2026-5-15）.macro`  
+## 5. 特定の電話番号拒否（2026-5-15）  
+**File:** `特定の電話番号拒否（2026-5-15）.macro`  
 **Article:** https://kamonomichi.com/macrodroid-call-restrictions/
 
 ### **Purpose**
