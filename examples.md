@@ -26,25 +26,29 @@ All examples follow a consistent structure:
 **Article:** https://kamonomichi.com/android-auto-scroll/
 
 ### **Purpose**
-TODO
+広告つきのアプリを使わずに、どのアプリでも画面を自動でスクロールする。止めるときは「スマホの自動スクロール解除」を使う。
 
 ### **Trigger**
-- TODO
+- 音量ボタンの操作：音量UPボタンの長押し（ユーザー補助サービスを使用、音量は変えない）
 
 ### **Action**
-- TODO
+- 繰り返し（100回）：発動したトリガーが音量UPの長押しのとき
+- UI画面操作：ジェスチャ（X500・Y1000 → X500・Y500、500ミリ秒）
+- 次のアクション実行前に待機：1秒
 
 ### **Constraint**
-- TODO
+- なし（特定のアプリだけで使いたい場合は、ここにアプリの条件を足す）
 
 ### **Logic**
-- TODO
+- 下から上へのスワイプを、待機をはさんで繰り返すことで自動スクロールにする
+- 動いているループはマクロの中から止められないため、停止は別のマクロ（自動スクロール解除）で外から無効→有効にしてリセットする
 
 ### **Notes**
-- TODO
+- 最初は MacroDroid のホーム画面で試す（ほかのアプリの上で止まらなくなると、MacroDroid の停止スイッチを押せない）
+- 音楽を聴いているときに音量UPを長押しすると、このマクロも動いてしまう
 
 ### **OS Considerations**
-- TODO
+- 記事では Android 16 対応として配布
 
 ---
 
@@ -53,25 +57,27 @@ TODO
 **Article:** https://kamonomichi.com/android-auto-scroll/
 
 ### **Purpose**
-TODO
+「スマホの自動スクロール開始」で動いている自動スクロールを止める。
 
 ### **Trigger**
-- TODO
+- 音量ボタンの操作：音量DOWNボタンの長押し（ユーザー補助サービスを使用、音量は変えない）
 
 ### **Action**
-- TODO
+- マクロを有効／無効：「スマホの自動スクロール開始」を無効にする
+- 次のアクション実行前に待機：1秒
+- マクロを有効／無効：「スマホの自動スクロール開始」を有効にする
 
 ### **Constraint**
-- TODO
+- なし（開始のマクロに条件を付けた場合は、同じ条件を付ける）
 
 ### **Logic**
-- TODO
+- ループ中のマクロを無効にして止め、1秒後に有効へ戻して次も使えるようにする
 
 ### **Notes**
-- TODO
+- 開始のマクロの名前を変えると止められなくなる（読み込んだあと、アクションのマクロ名を確認する）
 
 ### **OS Considerations**
-- TODO
+- 記事では Android 16 対応として配布
 
 ---
 
@@ -80,25 +86,27 @@ TODO
 **Article:** https://kamonomichi.com/macrodroid-call-restrictions/
 
 ### **Purpose**
-TODO
+指定した番号から続けてかかってくる電話を、自動で拒否する。
 
 ### **Trigger**
-- TODO
+- 電話の着信時：電話番号を指定（見本は 000-0000-0000）
 
 ### **Action**
-- TODO
+- 条件分岐（If）：発動したトリガーが「電話の着信時」
+- 着信を拒否
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- 記事では、「特定の電話番号拒否」のマクロで対応できないときに使うマクロとして紹介している
 
 ### **Notes**
-- TODO
+- 読み込んだあと、トリガーの電話番号を拒否したい番号に書き換える
+- 111（線路試験受付、通話料無料）に発信すると、折り返しの着信でテストできる
 
 ### **OS Considerations**
-- TODO
+- 記事では Android 16 対応として配布
 
 ---
 
@@ -107,25 +115,30 @@ TODO
 **Article:** https://kamonomichi.com/macrodroid-call-restrictions/
 
 ### **Purpose**
-TODO
+指定した番号からの着信だけ音を鳴らさない。着信は拒否しないので、着信履歴は残る。
 
 ### **Trigger**
-- TODO
+- 電話の着信時：電話番号を指定（見本は 000-0000-0000）
+- 通話終了時：同じ電話番号
 
 ### **Action**
-- TODO
+- 条件分岐（If）：発動したトリガーが「電話の着信時」→ サイレント（バイブOFF）を有効
+- 分岐を追加（Else If）：発動したトリガーが「通話終了時」→ サイレント（バイブOFF）を無効
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- 拒否ではなく音だけを消すので、ふつうに着信画面が出て履歴が残る
+- 通話が終わったらサイレントを解除して、元に戻す
 
 ### **Notes**
-- TODO
+- 通話終了時の解除がないと、サイレント（バイブOFF）のまま残ってしまう
+- 読み込んだあと、2つのトリガーの電話番号を書き換える
+- 111（線路試験受付、通話料無料）に発信すると、折り返しの着信でテストできる
 
 ### **OS Considerations**
-- TODO
+- 記事では Android 16 対応として配布
 
 ---
 
@@ -134,25 +147,26 @@ TODO
 **Article:** https://kamonomichi.com/macrodroid-call-restrictions/
 
 ### **Purpose**
-TODO
+指定した番号からの着信を自動で拒否する。Android 標準のブロック機能と違い、着信履歴が残る。
 
 ### **Trigger**
-- TODO
+- 電話の着信時：電話番号を指定（見本は 000-0000-0000）
 
 ### **Action**
-- TODO
+- 着信を拒否
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- 着信画面が表示されてから拒否するので、履歴に残る（標準のブロック機能は履歴が残らない）
 
 ### **Notes**
-- TODO
+- 読み込んだあと、トリガーの電話番号を拒否したい番号に書き換える
+- ワイルドカード（* ? [ ] ! #）で、複数の番号をまとめて指定できる
 
 ### **OS Considerations**
-- TODO
+- 記事では Android 16 対応として配布
 
 ---
 
@@ -161,25 +175,29 @@ TODO
 **Article:** https://kamonomichi.com/one-time-password-auto-save/
 
 ### **Purpose**
-TODO
+SMS で届いた認証コード（ワンタイムパスワード）を、受信した瞬間にクリップボードへ保存する。
 
 ### **Trigger**
-- TODO
+- SMSの受信：送信元は［連絡先にナシ］
 
 ### **Action**
-- TODO
+- 変数を設定：ローカル変数にSMSの本文（{sms_message}）を入れる
+- 文字列処理：文字列の抽出（\d+ の最初の一致）
+- クリップボードに記憶：取り出した数字列
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- SMS の本文で最初に見つかった数字列を認証コードとみなす（例：「あいうえお123456かきくけこ654321」→ 123456）
 
 ### **Notes**
-- TODO
+- 記事の「￥d+」は、実際には「\d+」（バックスラッシュ）と入力する
+- 送信元を指定しておくと、意図しないSMSで動くのを防げる
+- 処理はスマホの中だけで完結する
 
 ### **OS Considerations**
-- TODO
+- 記事では Android 16 対応として配布
 
 ---
 
@@ -188,25 +206,29 @@ TODO
 **Article:** https://kamonomichi.com/auto-play/
 
 ### **Purpose**
-TODO
+ワイヤレスイヤホンが接続されたら、Spotify を自動で再生する。
 
 ### **Trigger**
-- TODO
+- Bluetooth：デバイスに接続時（見本は「すべてのデバイス」）
 
 ### **Action**
-- TODO
+- アプリを起動：Spotify（新規で強制的に起動）
+- メディアを操作：再生する（Spotify）
+- 条件分岐（If）：音楽が再生中でない → もう一度「再生する」（Spotify）
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- アプリを開くだけでは曲が流れないので、再生の操作を送る
+- それでも再生されなかったときだけ、もう一度送る
 
 ### **Notes**
-- TODO
+- 読み込んだあと、トリガーの機器を自分のイヤホンに変える（「すべてのデバイス」のままだと、ほかの Bluetooth 機器でも動く）
+- MacroDroid 5.36（2023年9月）以降、Bluetooth のトリガーにはヘルパーファイルが必要
 
 ### **OS Considerations**
-- TODO
+- 記事では Android 16 対応として配布
 
 ---
 
@@ -215,25 +237,31 @@ TODO
 **Article:** https://kamonomichi.com/smartphone-led/
 
 ### **Purpose**
-TODO
+電話の着信中だけ、カメラのライト（LEDフラッシュ）を点滅させて着信を知らせる。
 
 ### **Trigger**
-- TODO
+- 電話の着信時：誰でも（番号指定なし）
 
 ### **Action**
-- TODO
+- 条件で繰り返す（While）：電話が着信中である間
+- 次のアクション実行前に待機：70ミリ秒
+- トーチをON／OFF：ON
+- 次のアクション実行前に待機：70ミリ秒
+- トーチをON／OFF：OFF
 
 ### **Constraint**
-- TODO
+- なし（夜だけ光らせたい場合は、時刻の条件を足す）
 
 ### **Logic**
-- TODO
+- カメラのLEDフラッシュは通知の設定からは制御できないため、トーチを高速でON/OFFして点滅を作る
+- 着信中の間だけ繰り返すので、着信が終われば止まる
 
 ### **Notes**
-- TODO
+- 待機時間を短くすると速く、長くするとゆっくり点滅する
+- LINE 電話は通常の電話の着信とは別扱いなので、トリガーを「通知が表示された時（LINE）」にする
 
 ### **OS Considerations**
-- TODO
+- Pixel 9a（Android 16）で検証（記事）
 
 ---
 
@@ -242,25 +270,32 @@ TODO
 **Article:** https://kamonomichi.com/smartphone-reboot/
 
 ### **Purpose**
-TODO
+決まった曜日・時刻に、スマホを自動で再起動する（root 不要）。
 
 ### **Trigger**
-- TODO
+- 指定曜日(複数可)の時刻：見本は週1回・22:00（曜日と時刻は好みに合わせる）
 
 ### **Action**
-- TODO
+- 画面をON/OFF：画面をONにする
+- 次のアクション実行前に待機：1秒
+- Androidショートカット：電源オプション（電源メニューを表示）
+- 次のアクション実行前に待機：1秒
+- UI画面操作：「再起動」をクリック
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- 電源メニューを開いて「再起動」の文字を押す。電源オプションのショートカットは、Android のバージョンでボタンの位置が違っても同じように使える
 
 ### **Notes**
-- TODO
+- Android 16 では「画面をONにする」が動かないことがあり、失敗するとあとのUI操作も動かない
+- 頻度は週1回〜月1回が目安（毎日はバッテリーの負担が大きい）
+- 使う前に一度動かして確認する
 
 ### **OS Considerations**
-- TODO
+- Android 16〜17 用（Android 17 はステータスバーの見た目だけが変わり、電源メニューは同じ）
+- Pixel 6・Pixel 8a・Pixel 9a で使用（記事）
 
 ---
 
@@ -269,25 +304,32 @@ TODO
 **Article:** https://kamonomichi.com/smartphone-reboot/
 
 ### **Purpose**
-TODO
+決まった曜日・時刻に、スマホを自動で再起動する（Android 12 以前の電源メニュー向け、root 不要）。
 
 ### **Trigger**
-- TODO
+- 指定曜日(複数可)の時刻：見本は週1回・22:00（曜日と時刻は好みに合わせる）
 
 ### **Action**
-- TODO
+- 画面をON/OFF：画面をONにする
+- 次のアクション実行前に待機：1秒
+- Androidショートカット：電源オプション
+- 次のアクション実行前に待機：1秒
+- UI画面操作：「電源」をクリック
+- 次のアクション実行前に待機：1秒
+- UI画面操作：「再起動」をクリック
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- 電源メニューを開き、「電源」→「再起動」の順に文字を押す
 
 ### **Notes**
-- TODO
+- 頻度は週1回〜月1回が目安（毎日はバッテリーの負担が大きい）
+- 使う前に一度動かして確認する
 
 ### **OS Considerations**
-- TODO
+- Android 12 以前用。Android 16〜17 は「スマホ再起動の自動化（2026-5-15_Android16）」を使う
 
 ---
 
@@ -296,25 +338,34 @@ TODO
 **Article:** https://kamonomichi.com/macrodroid-location-automation/
 
 ### **Purpose**
-TODO
+決まった時刻に、位置情報のON/OFFを自動で切り替える（例：朝7:00にOFF、夕方17:00にON）。
 
 ### **Trigger**
-- TODO
+- 指定曜日(複数可)の時刻：7:00
+- 指定曜日(複数可)の時刻：17:00（見本はどちらも毎日。記事の例は月〜金）
 
 ### **Action**
-- TODO
+- 画面をON/OFF：画面をONにする
+- Androidショートカット：クイックパネル
+- 次のアクション実行前に待機：1秒
+- UI画面操作：「位置情報」をクリック
+- 次のアクション実行前に待機：1秒
+- ステータスバーの開閉：閉じる
+- 画面をON/OFF：画面をOFFにする
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- クイックパネルの「位置情報」タイルを押すたびにON/OFFが入れ替わるので、同じ操作を朝と夕方に行う
 
 ### **Notes**
-- TODO
+- クイックパネルに「位置情報」のタイルを出しておく（ない場合は編集から追加）
+- Android 16 では「画面をONにする」が動かないことがある
+- トリガーを Wi-Fi や Bluetooth の接続・切断に変えても使える
 
 ### **OS Considerations**
-- TODO
+- 記事では Android 16 対応として配布
 
 ---
 
@@ -323,25 +374,31 @@ TODO
 **Article:** https://kamonomichi.com/spotify-macrodroid/
 
 ### **Purpose**
-TODO
+車のエンジンをかけてカーナビと Bluetooth でつながったら、Spotify を自動で再生する。
 
 ### **Trigger**
-- TODO
+- Bluetooth：デバイスに接続時（見本は「すべてのデバイス」）
 
 ### **Action**
-- TODO
+- アプリを起動：Spotify（新規で強制的に起動）
+- 次のアクション実行前に待機：1秒
+- メディアを操作：再生する（Spotify）
+- 条件分岐（If）：音楽が再生中でない → 1秒待機 → もう一度「再生する」（Spotify）
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- アプリを開くだけでは曲が流れないので、再生の操作を送る
+- それでも再生されなかったときだけ、もう一度送る
 
 ### **Notes**
-- TODO
+- 読み込んだあと、トリガーの機器をカーナビの Bluetooth 名に変える
+- 運転モード（ドライブモード）の自動ONを切り、Spotify のバッテリー最適化を「制限しない」にしておくと安定する
+- Bluetooth のトリガーにはヘルパーファイルが必要
 
 ### **OS Considerations**
-- TODO
+- 記事では Android 16 対応として配布
 
 ---
 
@@ -350,25 +407,31 @@ TODO
 **Article:** https://kamonomichi.com/macrodroid-amazon-music/
 
 ### **Purpose**
-TODO
+車のエンジンをかけてカーナビと Bluetooth でつながったら、Amazon Music を自動で再生する（Android Auto 不要）。
 
 ### **Trigger**
-- TODO
+- Bluetooth：デバイスに接続時（見本は「すべてのデバイス」）
 
 ### **Action**
-- TODO
+- アプリを起動：Amazon Music（新規で強制的に起動）
+- 次のアクション実行前に待機：1秒
+- メディアを操作：再生する
+- 条件分岐（If）：音楽が再生中でない → 1秒待機 → もう一度「再生する」（Amazon Music）
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- アプリを開くだけでは曲が流れないので、再生の操作を送る
+- それでも再生されなかったときだけ、もう一度送る
 
 ### **Notes**
-- TODO
+- 読み込んだあと、トリガーの機器をカーナビの Bluetooth 名に変える
+- 運転中に音が途切れる場合は、運転モードの自動ON（Bluetooth 接続時・運転検出時）を切る
+- Bluetooth のトリガーにはヘルパーファイルが必要
 
 ### **OS Considerations**
-- TODO
+- 記事では Android 16 対応として配布
 
 ---
 
@@ -377,25 +440,32 @@ TODO
 **Article:** https://kamonomichi.com/android16-tethering-automation/
 
 ### **Purpose**
-TODO
+車のカーナビと Bluetooth でつながったらテザリングをON、切れたらOFFにする（root 不要）。
 
 ### **Trigger**
-- TODO
+- Bluetooth：デバイスに接続時
+- Bluetooth：デバイスから切断時（見本はどちらも「すべてのデバイス」）
 
 ### **Action**
-- TODO
+- 条件分岐（If）：発動したトリガーが「接続時」→ アプリのアクティビティを起動（設定 Settings$WifiTetherSettingsActivity）→ 1秒待機 → UI画面操作「Wi-Fi アクセス ポイントを使用する」をクリック → ホーム画面を表示
+- 条件分岐（If）：発動したトリガーが「切断時」→ 同じ操作
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- Android 16 から、テザリングのスイッチを一般のアプリが直接切り替えられなくなったため、設定のテザリング画面を開いてスイッチを押す
+- 接続時と切断時に同じスイッチを押して、ON/OFFを入れ替える
 
 ### **Notes**
-- TODO
+- 読み込んだあと、2つのトリガーの機器をカーナビの Bluetooth 名に変える（「すべてのデバイス」のままだと、イヤホンをつないだときにも動く）
+- 画面OFFでは動かない
+- ボタンの文字が1文字でも違うと押せない（Android の更新で変わる可能性がある）
+- 待機は最低1秒（短いと、画面が出る前に押してしまう）
 
 ### **OS Considerations**
-- TODO
+- Android 16・17 で動作を確認（記事）
+- Shizuku を使えば、標準の「テザリングのON/OFF」アクションで直接切り替えることもできる
 
 ---
 
@@ -404,25 +474,31 @@ TODO
 **Article:** https://kamonomichi.com/android16-tethering-automation/
 
 ### **Purpose**
-TODO
+トリガー1つでテザリングのON/OFFを切り替える（車以外の用途向け、root 不要）。
 
 ### **Trigger**
-- TODO
+- 機器本体をシェイク
 
 ### **Action**
-- TODO
+- アプリのアクティビティを起動：設定 Settings$WifiTetherSettingsActivity
+- 次のアクション実行前に待機：1秒
+- UI画面操作：「Wi-Fi アクセス ポイントを使用する」をクリック
+- ホーム画面を表示
 
 ### **Constraint**
-- TODO
+- なし
 
 ### **Logic**
-- TODO
+- テザリング画面のスイッチを押すたびにON/OFFが入れ替わる
+- Android 16 から、テザリングのスイッチを一般のアプリが直接切り替えられなくなったため、画面を開いて押す
 
 ### **Notes**
-- TODO
+- シェイクは誤作動しやすい。トリガーは位置情報・Wi-Fi接続・NFC などに変えてもよい（位置情報なら「入った時」「出た時」の2つが必要）
+- 画面OFFでは動かない
+- ボタンの文字が1文字でも違うと押せない
 
 ### **OS Considerations**
-- TODO
+- Android 16・17 で動作を確認（記事）
 
 ---
 
