@@ -716,6 +716,41 @@ YouTube アプリのコメント欄で、英語などのコメントの「日本
 
 ---
 
+## 22. 楽天Linkでかけ直す（2026-11_Android17）  
+**File:** `楽天Linkでかけ直す（2026-11_Android17）.macro`  
+**Article:** https://kamonomichi.com/macrodroid-rakuten/
+
+### **Purpose**
+カーナビやスマホの電話アプリからの発信を、自動で楽天Linkからかけ直す（Bluetooth 接続中だけ）。
+
+### **Trigger**
+- 電話の発信時：電話番号を選択（正規表現を使用する）^(\+81 ?|0)(?!120|800|570|180|990)[1-9][0-9 -]{8,13}$
+
+### **Action**
+- 着信を拒否（発信中の電話も切れる）
+- インテントを送信：Activity / android.intent.action.DIAL / パッケージ jp.co.rakuten.mobile.rcs / クラス jp.co.rakuten.mobile.rcs.common.IntentReceiverActivity / データ tel:{call_number}
+- 次のアクション実行前に待機：2秒
+- UI画面操作：クリック XY座標（540,2226）
+
+### **Constraint**
+- Bluetooth デバイスに接続あり（デバイス指定なし。取り込んだら自分の車の Bluetooth を選び直す）
+
+### **Logic**
+- 普通の電話の発信を切り、同じ番号を楽天Linkのダイヤル画面に送って発信ボタンを押す
+- android.intent.action.CALL では白い画面で止まったため、DIAL で開いてから押す
+- Android 17 では Premium Dialer で楽天Linkに切り替わらなくなったため、MacroDroid だけで切り替える
+
+### **Notes**
+- 対象は携帯（090・080・070）と固定電話の番号だけ。110・119 などの3桁、0120・0800・0570・0180・0990 は対象外。トリガーを「誰でも」にしない（緊急通報を切ってしまう）
+- 普通の電話の発信が一瞬（試したときは0.3〜0.5秒）出る
+- 発信ボタンの座標は Pixel 9a の値。機種や楽天Linkの更新で変わる
+- 実車のカーナビでは未確認（Bluetooth イヤホンで確認）
+
+### **OS Considerations**
+- Android 17（Pixel 9a・楽天Link 4.0.2）で動作を確認（記事）
+
+---
+
 # 🧠 Author
 
 **Kamo**  
